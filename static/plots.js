@@ -56,6 +56,7 @@ function showPie(sample) {
   const url = `/samples/${sample}`;
   Plotly.d3.json(url, (error, response) => {
     if (error) return console.warn(error);
+    
     //get the top ten values and labels accounting for < 10
     let samplesZeroes = response[0]['sample_values'].slice(0, 10);
     let stop = 10;
@@ -102,7 +103,11 @@ function showBubble(sample) {
     
     //get the hover text
 
-    /** ~~For some reason, the below otuDescriptions call does return the correct array but won't work for the hover text (evaluation order?). So for now, I've just put the function in here, which of course defeats the purpose of having it in the first place. I'll research more to figure this out.~~ **/
+    /** ~~For some reason, the below otuDescriptions call does 
+    return the correct array but won't work for the hover text 
+    (evaluation order?). So for now, I've just put the function 
+    in here, which of course defeats the purpose of having it in 
+    the first place. I'll research more to figure this out.~~ **/
     //let bubbleText = otuDescriptions(otuIDs);
 
     //hover text workaround
@@ -116,8 +121,6 @@ function showBubble(sample) {
         let otuDesc = `${response[index]}`;
         otuDescArray.push(otuDesc);
       }
-    
-      console.log(otuDescArray);
       
       //set up the chart
       let data = [{
